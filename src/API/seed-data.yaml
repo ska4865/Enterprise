@@ -1,0 +1,44 @@
+seed:
+  inventory:
+    stores:
+      - name: warehouse 1
+        maxstore: 150
+      - name: warehouse 2
+        maxstore: 250
+    itemtypes:
+      - name: Watch (Foux Leather strap)
+        price: 32.50
+      - name: Watch (Real Leather strap)
+        price: 121.34
+      - name: Watch (Metal strap)
+        price: 179.25
+      - name: SmartWatch (Real Leather strap)
+        price: 349.99
+    items:
+      - storeid: 1
+        itemtypeid: 1
+        quantity: 3
+      - storeid: 1
+        itemtypeid: 2
+        quantity: 20
+      - storeid: 1
+        itemtypeid: 3
+        quantity: 50
+      - storeid: 2
+        itemtypeid: 4
+        quantity: 230
+  accounting:
+    accounts:
+      - name: pool
+        budget: 5000.00
+      - name: inventory
+        budget: 10000.00
+      - name: accounting
+        budget: 0
+      - name: human resources
+        budget: 5000.00
+      - name: manufacturing
+        budget: 20000.00
+      - name: customer service
+        budget: 5000.00
+      

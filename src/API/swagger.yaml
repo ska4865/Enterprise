@@ -1,0 +1,766 @@
+openapi: 3.0.3
+info:
+  title: Inventory-Accounting API
+  description:
+    This API is for the kenn-u-ware inventory and accounting portions of
+    the project
+  version: "2"
+servers:
+  - url: /
+paths:
+  /inventory/item:
+    get:
+      tags:
+        - Inventory Management
+        - Item
+      summary: Returns an item specified by ID
+      operationId: api_item_get
+      parameters:
+        - name: id
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompleteItem"
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    put:
+      tags:
+        - Inventory Management
+      summary: updates an item
+      operationId: api_item_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemID"
+        required: true
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    post:
+      tags:
+        - Inventory Management
+      summary: adds a new item as specified
+      operationId: api_item_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Item"
+        required: true
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    delete:
+      tags:
+        - Inventory Management
+      summary: deletes an item
+      operationId: api_item_delete
+      parameters:
+        - name: id
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompleteItem"
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /inventory/item/list:
+    get:
+      tags:
+        - Inventory Management
+        - Item
+      summary: lists all items
+      operationId: api_list_item_get
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                minItems: 2
+                type: array
+                items:
+                  $ref: "#/components/schemas/CompleteItem"
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /inventory/store:
+    get:
+      tags:
+        - Inventory Management
+        - Store
+      summary: Returns a store specified by ID
+      operationId: api_store_get
+      parameters:
+        - name: id
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Store"
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    post:
+      tags:
+        - Inventory Management
+        - Store
+      summary: adds a new store as specified
+      operationId: api_inventory_store_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Store"
+        required: true
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    delete:
+      tags:
+        - Inventory Management
+        - Store
+      summary: deletes a store
+      operationId: api_inventory_store_delete
+      parameters:
+        - name: id
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Store"
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /inventory/store/list:
+    get:
+      tags:
+        - Inventory Management
+        - Store
+      summary: lists all stores
+      operationId: api_list_store_get
+      responses:
+        "200":
+          description: A JSON document containing the stores
+          content:
+            application/json:
+              schema:
+                minItems: 2
+                type: array
+                items:
+                  $ref: "#/components/schemas/Store"
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /inventory/itemtype:
+    get:
+      tags:
+        - Inventory Management
+        - ItemType
+      summary: Returns an itemtype specified by ID
+      operationId: api_inventory_itemtype_get
+      parameters:
+        - name: id
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the itemtype
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemType"
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    post:
+      tags:
+        - Inventory Management
+        - ItemType
+      summary: adds a new itemtype as specified
+      operationId: api_inventory_itemtype_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemType"
+        required: true
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    put:
+      tags:
+        - Inventory Management
+        - ItemType
+      summary: updates an itemtype
+      operationId: api_itemtype_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ItemTypeID"
+        required: true
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+    delete:
+      tags:
+        - Inventory Management
+        - ItemType
+      summary: deletes a itemtype
+      operationId: api_itemtype_delete
+      parameters:
+        - name: id
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ItemType"
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /inventory/itemtype/list:
+    get:
+      tags:
+        - Inventory Management
+        - Item
+      summary: lists all itemtypes
+      operationId: api_list_itemtype_get
+      responses:
+        "200":
+          description: A JSON document containing the itemtype
+          content:
+            application/json:
+              schema:
+                minItems: 2
+                type: array
+                items:
+                  $ref: "#/components/schemas/ItemType"
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /inventory/item/sell:
+    post:
+      tags:
+        - Inventory Management
+        - Item
+        - External
+      summary: sell an item from inventory stock
+      operationId: api_item_sell
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/item_sell_body"
+        required: true
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /inventory/item/stock:
+    post:
+      tags:
+        - Inventory Management
+        - Item
+        - External
+      summary: stocks an item in inventory
+      operationId: api_item_stock
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/item_stock_body"
+        required: true
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.inventory_management_controller
+  /accounting/account:
+    get:
+      tags:
+        - Accounting
+        - Account
+      summary: get a particular account
+      operationId: api_accountingaccount_get
+      parameters:
+        - name: id
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+    put:
+      tags:
+        - Accounting
+        - Account
+      summary: updates an Account
+      operationId: api_account_put
+      parameters:
+        - name: body
+          in: query
+          description: JSON document
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/AccountID"
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+    post:
+      tags:
+        - Accounting
+        - Account
+      summary: adds a new Account as specified
+      operationId: api_account_post
+      parameters:
+        - name: body
+          in: query
+          description: JSON document
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/Account"
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+    delete:
+      tags:
+        - Accounting
+        - Account
+      summary: deletes an Account
+      operationId: api_account_delete
+      parameters:
+        - name: id
+          in: query
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the Account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+  /accounting/account/list:
+    get:
+      tags:
+        - Accounting
+        - Account
+      summary: list all accounts
+      operationId: api_list_account_get
+      responses:
+        "200":
+          description: A JSON document containing the item
+          content:
+            application/json:
+              schema:
+                minItems: 2
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+  /accounting/salary:
+    post:
+      tags:
+        - Accounting
+      summary: Pays out a salary to an employee
+      operationId: api_account_salary
+      parameters:
+        - name: body
+          in: query
+          description: JSON document
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/Transaction"
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+  /accounting/account/withdraw:
+    post:
+      tags:
+        - Accounting
+        - Account
+        - External
+      summary: withdraw from an Account
+      operationId: api_account_withdraw_post
+      parameters:
+        - name: body
+          in: query
+          description: JSON document
+          required: false
+          style: form
+          explode: true
+          schema: {}
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+  /accounting/account/fund:
+    post:
+      tags:
+        - Accounting
+        - Account
+        - External
+      summary: fund an Account
+      operationId: api_account_fund
+      parameters:
+        - name: body
+          in: query
+          description: JSON document
+          required: false
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/fund"
+      responses:
+        "200":
+          description: Successful Operation
+          content: {}
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+  /accounting/transaction:
+    get:
+      tags:
+        - Accounting
+        - Transaction
+      summary: get a particular transaction
+      operationId: api_transaction_get
+      parameters:
+        - name: id
+          in: query
+          required: true
+          style: form
+          explode: true
+          schema:
+            $ref: "#/components/schemas/id"
+      responses:
+        "200":
+          description: A JSON document containing the Transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+  /accounting/transaction/list:
+    get:
+      tags:
+        - Accounting
+      summary: get a particular transaction
+      operationId: api_list_transaction_get
+      responses:
+        "200":
+          description: A JSON document containing the Transaction
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transaction"
+      x-openapi-router-controller: swagger_server.controllers.accounting_controller
+
+components:
+  schemas:
+    CompleteItem:
+      type: object
+      properties:
+        ItemName:
+          type: string
+          example: Smart Watch
+        price:
+          type: number
+          example: 23.57
+        WarehouseName:
+          type: string
+          example: warehouse 1
+        quantity:
+          type: number
+          example: 50
+        storeID:
+          type: number
+          example: 1
+        itemtypeID:
+          type: number
+          example: 1
+    ItemType:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Smart Watch
+        price:
+          type: number
+          example: 23.57
+    Store:
+      type: object
+      properties:
+        name:
+          type: string
+          example: warehouse 1
+        maxstore:
+          type: number
+          example: 23.57
+    Item:
+      type: object
+      properties:
+        quantity:
+          type: number
+          example: 50
+        storeID:
+          type: number
+          example: 1
+        itemtypeID:
+          type: number
+          example: 1
+      example:
+        quantity: 50
+        itemtypeID: 1
+        storeID: 1
+    ItemTypeID:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Smart Watch
+        price:
+          type: number
+          example: 23.57
+    ItemID:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        quantity:
+          type: number
+          example: 50
+        storeID:
+          type: number
+          example: 1
+        itemtypeID:
+          type: number
+          example: 1
+    Transaction:
+      type: object
+      properties:
+        accountid:
+          type: number
+          example: 1
+        amount:
+          type: number
+          example: -50.34
+      example:
+        accountid: 1
+        amount: -50.34
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Inventory-Management
+        budget:
+          type: number
+          example: 54000.34
+    AccountID:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Inventory-Management
+        budget:
+          type: number
+          example: 54000.34
+    id:
+      type: integer
+      example: 1
+    item_sell_body:
+      type: object
+      properties:
+        ItemID:
+          type: number
+          example: 1
+        Quantity:
+          type: number
+          example: 2
+    item_stock_body:
+      type: object
+      properties:
+        ItemID:
+          type: number
+          example: 1
+        Quantity:
+          type: number
+          example: 2
+    fund:
+      type: object
+      properties:
+        AccountID:
+          type: number
+          example: 1
+        Funds:
+          type: number
+          example: 34
+    refund:
+      type: object
+      properties:
+        Address:
+          type: string
+          example: 1 kimball drive
+        Funds:
+          type: number
+          example: 34000
+  responses:
+    "200Success":
+      description: Successful Operation
+      content: {}
+    "200GoodItem":
+      description: A JSON document containing the item
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Item"
+    "200GoodAccount":
+      description: A JSON document containing the item
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Account"
+    "200ListItem":
+      description: A JSON document containing the item
+      content:
+        application/json:
+          schema:
+            minItems: 2
+            type: array
+            items:
+              $ref: "#/components/schemas/Item"
+            x-content-type: application/json
+    "200ListAccount":
+      description: A JSON document containing the item
+      content:
+        application/json:
+          schema:
+            minItems: 2
+            type: array
+            items:
+              $ref: "#/components/schemas/Account"
+  parameters:
+    ID:
+      name: id
+      in: query
+      required: true
+      style: form
+      explode: true
+      schema:
+        $ref: "#/components/schemas/id"
+    Account:
+      name: body
+      in: query
+      description: JSON document
+      required: false
+      style: form
+      explode: true
+      schema:
+        $ref: "#/components/schemas/Account"
+    AccountID:
+      name: body
+      in: query
+      description: JSON document
+      required: false
+      style: form
+      explode: true
+      schema:
+        $ref: "#/components/schemas/AccountID"
+    Item:
+      name: body
+      in: query
+      description: JSON document
+      required: false
+      style: form
+      explode: true
+      schema:
+        $ref: "#/components/schemas/Item"
+    ItemID:
+      name: body
+      in: query
+      description: JSON document
+      required: false
+      style: form
+      explode: true
+      schema:
+        $ref: "#/components/schemas/ItemID"

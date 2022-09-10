@@ -1,0 +1,17 @@
+# MAKE SURE TO UPDATE FOR YOUR OWN PROJECT !!!
+###############
+**/target/
+# Eclipse #
+###########
+.project
+.classpath
+.settings
+**/bin/
+.metadata/
+# IntelliJ #
+############
+.idea/
+*.iml
+.env
+swagger-env
+package-lock.json

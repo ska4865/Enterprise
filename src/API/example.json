@@ -1,0 +1,14 @@
+{
+    "ID": 1,
+    "QUANTITY": 50,
+    "STORE": {
+        "ID": 1,
+        "NAME": "WAREHOUSE 1",
+        "MAXSTORE": 50
+    },
+    "ITEMTYPE": {
+        "ID": 1,
+        "NAME": "Smart Watch",
+        "PRICE": 50.34
+    }
+}

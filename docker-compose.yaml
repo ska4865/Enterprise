@@ -1,0 +1,42 @@
+version: "3.9"
+   
+services:
+  db:
+    container_name: kenn-u-ware_IM-A_DB
+    image: postgres:latest
+    networks:
+      - kenn-u-ware
+    environment:
+      - POSTGRES_USER=docker_user
+      - POSTGRES_PASSWORD=docker_pw
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/API/initsql/Tables.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+  api:
+    container_name: kenn-u-ware_IM-A_API
+    build: src/API/.
+    networks:
+      - kenn-u-ware
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./docker-compose.yaml:/docker-compose.yaml
+    depends_on:
+     - db
+    restart: unless-stopped
+  website:
+    container_name: kenn-u-ware_IM-A_WEB
+    build: src/website/.
+    networks:
+      - kenn-u-ware
+    ports:
+      - "80:3000"
+    depends_on:
+     - api
+    restart: unless-stopped
+
+networks:
+  kenn-u-ware:
+    driver: bridge
